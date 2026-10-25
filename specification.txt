@@ -1,0 +1,3 @@
+HTML Tags (10+): html, head, title, meta, link, body, nav, div, ul, li, h1, h2, p, button, main, script, form, label, input, textarea
+CSS Properties (5+): background-color, font-family, color, font-weight, margin, padding, border-radius
+JavaScript & Bootstrap: JavaScript was used to display interactive alert messages and handle form submissions, while Bootstrap was integrated for responsive grid layout, navbar, and styled buttons.
