@@ -20,7 +20,7 @@ candidate candidates[MAX_CANDIDATES];
 int voter_count;
 int candidate_count;
 
-bool vote(string voter, int rank, string name);
+bool vote(int voter, int rank, string name);
 void tabulate(void);
 bool print_winner(void);
 int find_min(void);
@@ -108,7 +108,7 @@ int main(int argc, string argv[])
     return 0;
 }
 
-bool vote(string voter, int rank, string name)
+bool vote(int voter, int rank, string name)
 {
     for (int i = 0; i < candidate_count; i++)
     {
@@ -188,4 +188,3 @@ void eliminate(int min)
     }
     return;
 }
-
