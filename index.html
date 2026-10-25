@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                // --- Part 1: Multiple Choice ---
+                let correctButton = document.querySelector('.correct');
+                let incorrectButtons = document.querySelectorAll('.incorrect');
+                let feedback1 = document.querySelector('#feedback1');
+
+                // Correct Button Logic
+                correctButton.addEventListener('click', function() {
+                    correctButton.style.backgroundColor = 'green';
+                    // Reset incorrect buttons background
+                    incorrectButtons.forEach(function(button) {
+                        button.style.backgroundColor = '';
+                    });
+                    feedback1.innerHTML = 'Correct!';
+                });
+
+                // Incorrect Buttons Logic
+                incorrectButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        button.style.backgroundColor = 'red';
+                        correctButton.style.backgroundColor = '';
+                        feedback1.innerHTML = 'Incorrect';
+                    });
+                });
+
+
+                // --- Part 2: Free Response ---
+                let checkButton = document.querySelector('#check');
+                let inputField = document.querySelector('#answer');
+                let feedback2 = document.querySelector('#feedback2');
+
+                checkButton.addEventListener('click', function() {
+                    // Check answer (case-insensitive and trimmed)
+                    let userAnswer = inputField.value.trim().toLowerCase();
+                    if (userAnswer === 'switzerland') {
+                        inputField.style.backgroundColor = 'green';
+                        feedback2.innerHTML = 'Correct!';
+                    } else {
+                        inputField.style.backgroundColor = 'red';
+                        feedback2.innerHTML = 'Incorrect';
+                    }
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice</h2>
+                <hr>
+                <h3>What is the approximate population of the Earth?</h3>
+                <button class="incorrect">5 Billion</button>
+                <button class="incorrect">6 Billion</button>
+                <button class="correct">8 Billion</button>
+                <button class="incorrect">10 Billion</button>
+                <p id="feedback1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>In which country is CERN's Large Hadron Collider located?</h3>
+                <input type="text" id="answer">
+                <button id="check">Check Answer</button>
+                <p id="feedback2"></p>
+            </div>
+        </div>
+    </body>
+</html>
