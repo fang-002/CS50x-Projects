@@ -1,1 +1,1 @@
-Done
+I solved all the SQL queries using SELECT, ORDER BY, WHERE, and subqueries to filter and analyze the songs database successfully.
