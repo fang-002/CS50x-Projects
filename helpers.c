@@ -26,7 +26,10 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     }
 }
 
-// Loop over all rows
+// Convert image to sepia
+void sepia(int height, int width, RGBTRIPLE image[height][width])
+{
+    // Loop over all rows
     for (int i = 0; i < height; i++)
     {
         // Loop over all columns
@@ -48,8 +51,12 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = (sepiaBlue > 255) ? 255 : sepiaBlue;
         }
     }
+}
 
-// Loop over all rows
+// Reflect image horizontally
+void reflect(int height, int width, RGBTRIPLE image[height][width])
+{
+    // Loop over all rows
     for (int i = 0; i < height; i++)
     {
         // Loop over half of the columns
@@ -61,8 +68,9 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             image[i][width - 1 - j] = temp;
         }
     }
+}
 
-    // Blur image
+// Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     // Create a temporary copy of the image
