@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: It sorted the already sorted file instantly because of its linear best-case time complexity, but took significantly longer on randomized and reversed input files.
+
+sort2 uses: Merge Sort
+
+How do you know?: It performed efficiently and consistently across all input files regardless of whether they were sorted, reversed, or randomized, reflecting its n log n complexity.
+
+sort3 uses: Selection Sort
+
+How do you know?: Its running time was consistently slow across all input test files, taking approximately the same time for sorted, reversed, and randomized inputs due to its n^2 complexity in all cases.
