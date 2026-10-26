@@ -37,7 +37,6 @@ def after_request(response):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    # جلب الأسهم اللي اليوزر معاه
     rows = db.execute("""
         SELECT symbol, SUM(shares) AS total_shares
         FROM transactions
@@ -49,7 +48,6 @@ def index():
     portfolio = []
     total_value = 0
 
-    # جلب سعر كل سهم حالياً وحساب قيمته
     for row in rows:
         stock = lookup(row["symbol"])
         value = stock["price"] * row["total_shares"]
@@ -61,11 +59,10 @@ def index():
         })
         total_value += value
 
-    # جلب كاش اليوزر
     cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
     grand_total = total_value + cash
 
-    # تنسيق الأرقام عشان تظهر بـ 2 decimal places زي ما check50 عايز
+    # السطرين دول هما اللي بيحلوا المشكلة ويخلوا الرقم يطلع 56.00
     cash = "{:.2f}".format(cash)
     grand_total = "{:.2f}".format(grand_total)
 
