@@ -1,9 +1,13 @@
 {% extends "layout.html" %}
+
 {% block main %}
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Symbol</th><th>Shares</th><th>Price</th><th>Value</th>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Value</th>
         </tr>
     </thead>
     <tbody>
@@ -17,8 +21,15 @@
         {% endfor %}
     </tbody>
 </table>
+
 <table class="table table-striped">
-    <tr><td>Cash</td><td>{{ cash | usd }}</td></tr>
-    <tr><td><strong>Total</strong></td><td><strong>{{ grand_total | usd }}</strong></td></tr>
+    <tr>
+        <td>Cash</td>
+        <td>{{ cash }}</td>
+    </tr>
+    <tr>
+        <td><strong>Total</strong></td>
+        <td><strong>{{ grand_total }}</strong></td>
+    </tr>
 </table>
 {% endblock %}

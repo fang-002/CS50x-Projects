@@ -65,6 +65,10 @@ def index():
     cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
     grand_total = total_value + cash
 
+    # تنسيق الأرقام عشان تظهر بـ 2 decimal places زي ما check50 عايز
+    cash = "{:.2f}".format(cash)
+    grand_total = "{:.2f}".format(grand_total)
+
     return render_template("index.html", portfolio=portfolio, cash=cash, grand_total=grand_total)
 
 @app.route("/buy", methods=["GET", "POST"])
