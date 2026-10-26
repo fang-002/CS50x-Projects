@@ -1,13 +1,9 @@
 {% extends "layout.html" %}
-
 {% block main %}
-<table class="table table-striped">
+<table class="table">
     <thead>
         <tr>
-            <th>Symbol</th>
-            <th>Shares</th>
-            <th>Price</th>
-            <th>Value</th>
+            <th>Symbol</th><th>Shares</th><th>Price</th><th>Value</th>
         </tr>
     </thead>
     <tbody>
@@ -22,20 +18,8 @@
     </tbody>
 </table>
 
-<table class="table table-striped">
-    <tr>
-        <td>Cash</td>
-        <!-- Line 28: Add | usd -->
-<tr>
-    <td>Cash</td>
-    <td>{{ cash | usd }}</td>
-</tr>
-
-<!-- Line 32: Add | usd -->
-<tr>
-    <td><strong>Total</strong></td>
-    <td><strong>{{ grand_total | usd }}</strong></td>
-</tr>
-    </tr>
+<table class="table">
+    <tr><td>Cash</td><td>{{ cash | usd }}</td></tr>
+    <tr><td><strong>Grand Total</strong></td><td><strong>{{ grand_total | usd }}</strong></td></tr>
 </table>
 {% endblock %}
