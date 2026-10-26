@@ -1,46 +1,18 @@
-@app.route("/sell", methods=["GET", "POST"])
-@login_required
-def sell():
-    if request.method == "POST":
-        symbol = request.form.get("symbol")
-        shares = request.form.get("shares")
+{% extends "layout.html" %}
 
-        if not symbol:
-            return apology("must select a stock", 400)
-
-        try:
-            shares = int(shares)
-        except (TypeError, ValueError):
-            return apology("shares must be a positive integer", 400)
-
-        if shares <= 0:
-            return apology("shares must be a positive integer", 400)
-
-        row = db.execute("""
-            SELECT SUM(shares) AS total FROM transactions
-            WHERE user_id = ? AND symbol = ?
-        """, session["user_id"], symbol)
-
-        owned = row[0]["total"] or 0
-        if owned < shares:
-            return apology("not enough shares", 400)
-
-        stock = lookup(symbol)
-        proceeds = shares * stock["price"]
-
-        db.execute(
-            "INSERT INTO transactions (user_id, symbol, shares, price, type) VALUES (?, ?, ?, ?, 'sell')",
-            session["user_id"], stock["symbol"], shares, stock["price"]
-        )
-        db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", proceeds, session["user_id"])
-
-        flash(f"Sold {shares} share(s) of {stock['symbol']}!")
-        return redirect("/")
-    else:
-        rows = db.execute("""
-            SELECT symbol FROM transactions
-            WHERE user_id = ?
-            GROUP BY symbol
-            HAVING SUM(shares) > 0
-        """, session["user_id"])
-        return render_template("sell.html", stocks=rows)
+{% block main %}
+<form action="/sell" method="post">
+    <div class="mb-3">
+        <select class="form-select" name="symbol">
+            <option disabled selected value="">Symbol</option>
+            {% for stock in stocks %}
+                <option value="{{ stock.symbol }}">{{ stock.symbol }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <input class="form-control" name="shares" placeholder="Shares" type="number" min="1">
+    </div>
+    <button class="btn btn-primary" type="submit">Sell</button>
+</form>
+{% endblock %}
