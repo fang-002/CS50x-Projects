@@ -25,11 +25,17 @@
 <table class="table table-striped">
     <tr>
         <td>Cash</td>
-        <td>{{ cash | usd }}</td>
-    </tr>
-    <tr>
-        <td><strong>Total</strong></td>
-        <td><strong>{{ grand_total }}</strong></td>
+        <!-- Line 28: Add | usd -->
+<tr>
+    <td>Cash</td>
+    <td>{{ cash | usd }}</td>
+</tr>
+
+<!-- Line 32: Add | usd -->
+<tr>
+    <td><strong>Total</strong></td>
+    <td><strong>{{ grand_total | usd }}</strong></td>
+</tr>
     </tr>
 </table>
 {% endblock %}
